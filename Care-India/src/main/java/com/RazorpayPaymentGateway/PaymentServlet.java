@@ -40,10 +40,10 @@ public class PaymentServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			// Store order details in session
-			session.setAttribute("orderId", order.get("id"));
-			session.setAttribute("amount", amountStr); // Store the original amount in INR
-			session.setAttribute("name", name);// Store name and email here
-			session.setAttribute("email", email);
+			request.setAttribute("orderId", order.get("id"));
+			request.setAttribute("amount", amountStr); // Store the original amount in INR
+			request.setAttribute("name", name);// Store name and email here
+			request.setAttribute("email", email);
 
 //			System.out.println("Order ID: " + session.getAttribute("orderId"));
 //			System.out.println("Amount: " + session.getAttribute("amount"));

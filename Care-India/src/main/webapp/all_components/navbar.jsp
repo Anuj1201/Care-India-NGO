@@ -69,6 +69,10 @@
 </style>
 </head>
 <body>
+
+	<%
+	Founder founder = (Founder) session.getAttribute("userobj");
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<div class="navbar-brand">
@@ -88,16 +92,22 @@
 						href="join_us.jsp">Join Us</a></li>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
 						href="contact.jsp">Contact Us</a></li>
+					<%
+					if (founder == null) {
+					%>
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="donors.jsp">Donate Now</a></li>
+						href="join_us.jsp">Donate Now</a></li>
+					<%
+					}
+					%>
 				</ul>
 				<form class="d-flex">
 					<%
-					Founder founder = (Founder) session.getAttribute("userobj");
 					if (founder != null) {
 					%>
-					<!-- Display Logout button if logged in -->
-					<a class="btn btn-outline-danger" href="logout">Logout</a>
+					<!-- Display Logout button and home button if logged in -->
+					<a class="btn btn-outline-danger mr-3" href="home.jsp">Home</a> <a
+						class="btn btn-outline-danger" href="logout">Logout</a>
 					<%
 					} else {
 					%>

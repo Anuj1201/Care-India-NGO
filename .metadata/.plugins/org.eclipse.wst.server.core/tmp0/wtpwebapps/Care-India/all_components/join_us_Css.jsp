@@ -56,12 +56,14 @@
 }
 
 .join-us-card a {
+	display: block;
 	text-decoration: none;
 	font-family: Cambria, sans-serif;
 	color: white;
 	background-color: grey;
 	padding: 10px 20px;
 	border-radius: 10px;
+	margin-bottom: 10px;
 }
 .join-us-card a:hover {
 text-decoration: none;

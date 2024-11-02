@@ -120,13 +120,13 @@ body::before {
             "currency": "INR",
             "name": "Care-India",
             "description": "Test Transaction",
-            "order_id": "<%=session.getAttribute("orderId")%>",
+            "order_id": "<%=request.getAttribute("orderId")%>",
             "handler": function(response) {
                 // Populate hidden form with payment data
-                document.getElementById('donorName').value = "<%=session.getAttribute("name")%>";
-                document.getElementById('donorEmail').value = "<%=session.getAttribute("email")%>";
-                document.getElementById('donorAmount').value = "<%=session.getAttribute("amount")%>";
-                document.getElementById('donorOrderId').value = "<%=session.getAttribute("orderId")%>";
+                document.getElementById('donorName').value = "<%=request.getAttribute("name")%>";
+                document.getElementById('donorEmail').value = "<%=request.getAttribute("email")%>";
+                document.getElementById('donorAmount').value = "<%=request.getAttribute("amount")%>";
+                document.getElementById('donorOrderId').value = "<%=request.getAttribute("orderId")%>";
 				document.getElementById('donorPaymentId').value = response.razorpay_payment_id;
 
 				// Submit form to DonorServlet

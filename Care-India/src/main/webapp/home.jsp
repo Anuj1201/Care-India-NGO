@@ -13,6 +13,7 @@
 
 <title>Founder | Home</title>
 <%@include file="all_components/allCss.jsp"%>
+<%@include file="all_components/indexCss.jsp"%>
 <style type="text/css">
 a {
 	text-decoration: none;
@@ -40,7 +41,19 @@ a:hover {
 					<div class="card">
 						<div class="card-body">
 							<i class="fas fa-book-open fa-3x text-danger"></i><br>
-							<h4>Volunteer</h4>
+							<h4>Volunteers</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-3">
+				<a href="donors.jsp">
+					<div class="card">
+						<div class="card-body">
+							<i class="fas fa-book-open fa-3x text-danger"></i><br>
+							<h4>Donors</h4>
+
 						</div>
 					</div>
 				</a>
@@ -64,17 +77,6 @@ a:hover {
 						<div class="card-body">
 							<i class="fas fa-box-open fa-3x text-warning"></i><br>
 							<h4>Delete Mission</h4>
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<div class="col-md-3">
-				<a data-toggle="modal" data-target="#exampleModalCenter">
-					<div class="card">
-						<div class="card-body">
-							<i class="fas fa-sign-out-alt fa-3x text-primary"></i><br>
-							<h4>Logout</h4>
 						</div>
 					</div>
 				</a>

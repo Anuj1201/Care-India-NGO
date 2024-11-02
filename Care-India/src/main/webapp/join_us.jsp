@@ -48,7 +48,7 @@
 				<p>Support our programs by making a donation. Every
 					contribution, big or small, goes a long way in changing lives.</p>
 				<a href="javascript:void(0);" onclick="toggleForm('donationForm')">Donate
-					Now</a>
+					Now</a> <a class="ml-3" href="donors.jsp">Our Contributors</a>
 			</div>
 
 			<!-- Partner Card -->

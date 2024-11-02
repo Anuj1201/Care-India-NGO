@@ -48,12 +48,12 @@ public class DonorDAOImpl implements DonorDAO {
 			
 			while (rs.next()) {
 				Donors donor = new Donors();
-
-				donor.setName(rs.getString("name"));
-				donor.setEmail(rs.getString("email"));
-				donor.setAmount(rs.getDouble("amount"));
-				donor.setOrderId(rs.getString("order_id"));
-				donor.setPaymentId(rs.getString("payment_id"));
+				donor.setId(rs.getInt(1));
+				donor.setName(rs.getString(2));
+				donor.setEmail(rs.getString(3));
+				donor.setAmount(rs.getDouble(4));
+				donor.setOrderId(rs.getString(5));
+				donor.setPaymentId(rs.getString(6));
 
 				donorList.add(donor);
 			}

@@ -20,7 +20,7 @@
 <style>
 body {
 	font-family: 'Cambria', serif;
-	background-color: #f8f9fa;
+	background-color: #f2f2f2;
 	margin: 20px;
 }
 

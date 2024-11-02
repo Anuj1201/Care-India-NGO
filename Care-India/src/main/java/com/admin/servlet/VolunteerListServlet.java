@@ -30,8 +30,6 @@ public class VolunteerListServlet extends HttpServlet {
 		
 		List<Volunteer> volunteerList = dao.getAllVolunteers();
 		session.setAttribute("volunteerList", volunteerList);
-		System.out.println("Number of volunteers: " + volunteerList.size()); // Debugging line
-		System.out.println(volunteerList);
 		request.getRequestDispatcher("volunteer.jsp").forward(request, response);
 	}
 }
