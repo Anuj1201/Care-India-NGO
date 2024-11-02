@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%
+String nonce = Long.toString(System.currentTimeMillis()); // Generate a unique nonce
+%>
+<meta http-equiv="Content-Security-Policy"
+	content="script-src 'self' 'nonce-<%=nonce%>' https://cdn.jsdelivr.net https://code.jquery.com https://stackpath.bootstrapcdn.com; object-src 'none';">
+<title>Contact Us | Care India</title>
+<%@include file="all_components/allCss.jsp"%>
+<%@include file="all_components/indexCss.jsp"%>
+<style>
+/* Additional CSS for Contact Us page */
+body {
+	font-family: Arial, sans-serif;
+}
+
+.contact-info {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.contact-info p {
+	font-size: 1.2em;
+	color: #555;
+}
+</style>
+
+</head>
+<body>
+	<%@include file="all_components/navbar.jsp"%>
+
+	<div class="contact-info mt-5">
+		<h2>Contact Information</h2>
+		<p>
+			<strong>Email:</strong> info@careIndia.org
+		</p>
+		<p>
+			<strong>Phone:</strong> +91-7453527819
+		</p>
+		<p>
+			<strong>Address:</strong> Care India Organization, 512, Shivaji
+			Street, Mumbai, Maharashtra, 482005, India
+		</p>
+	</div>
+
+
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>

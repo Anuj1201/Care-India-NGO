@@ -1,0 +1,8 @@
+package com.RazorpayPaymentGateway;
+
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/saveDonor")
+public class DonorServlet extends HttpServlet {
+
+}

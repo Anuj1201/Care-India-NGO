@@ -1,0 +1,11 @@
+package com.DAO;
+
+import com.entity.Founder;
+
+public interface FounderDAO {
+	
+	public Founder Login(String email, String password);
+	
+	public boolean checkPassword(int id, String ps);
+	
+}

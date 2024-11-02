@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%
+String nonce = Long.toString(System.currentTimeMillis()); // Generate a unique nonce
+%>
+<meta http-equiv="Content-Security-Policy"
+	content="script-src 'self' 'nonce-<%=nonce%>' https://cdn.jsdelivr.net https://code.jquery.com https://stackpath.bootstrapcdn.com; object-src 'none';">
+<title>Contact Us | Care India</title>
+<%@include file="all_components/allCss.jsp"%>
+<%@include file="all_components/indexCss.jsp"%>
+<style>
+/* Additional CSS for Contact Us page */
+body {
+	font-family: Arial, sans-serif;
+}
+
+.contact-header {
+	text-align: center;
+	padding: 40px 20px;
+	background-color: #f5f5f5;
+	margin-bottom: 20px;
+}
+
+.contact-header h1 {
+	color: #007BFF;
+	font-size: 2.5em;
+}
+
+.contact-info {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.contact-info p {
+	font-size: 1.2em;
+	color: #555;
+}
+
+.contact-form {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+	text-align: center;
+	color: #333;
+}
+
+.contact-form label {
+	display: block;
+	margin-bottom: 5px;
+	color: #555;
+}
+
+.contact-form input, .contact-form textarea {
+	width: calc(100% - 20px);
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.contact-form button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.contact-form button:hover {
+	background-color: #0056b3;
+}
+
+/* Dialog Box Styles */
+.dialog-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none; /* Hidden by default */
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+}
+
+.dialog-box {
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	width: 90%; /* Responsive width */
+	max-width: 500px; /* Max width for larger screens */
+	opacity: 0; /* Start with opacity 0 */
+	transform: scale(0); /* Start scaled down */
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	/* Smooth transition */
+}
+
+.dialog-box.show {
+	opacity: 1; /* Show dialog */
+	transform: scale(1); /* Scale to normal size */
+}
+
+.dialog-box .close-btn {
+	float: right;
+	cursor: pointer;
+	color: #007BFF;
+	font-size: 20px;
+}
+</style>
+<script nonce="<%=nonce%>"> // Use nonce in the script tag
+        function showDialog() {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('dialog-overlay');
+
+            overlay.style.display = 'flex'; // Show overlay
+            setTimeout(() => {
+                dialog.classList.add('show'); // Show dialog with delay
+            }, 10); // Slight delay to allow CSS transition to take effect
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeDialog() {
+            const dialog = document.getElementById('dialog');
+            const overlay = document.getElementById('dialog-overlay');
+
+            dialog.classList.remove('show'); // Hide dialog
+            setTimeout(() => {
+                overlay.style.display = 'none'; // Hide overlay after transition
+            }, 300); // Match the transition duration
+            document.body.style.overflow = ''; // Reset background scrolling
+        }
+    </script>
+</head>
+<body>
+	<%@include file="all_components/navbar.jsp"%>
+
+	<div class="contact-info mt-5">
+		<h2>Contact Information</h2>
+		<p>
+			<strong>Email:</strong> info@careindia.org
+		</p>
+		<p>
+			<strong>Phone:</strong> +91-7453527819
+		</p>
+		<p>
+			<strong>Address:</strong> Care India Organization, 512, Shivaji
+			Street, Mumbai, Maharashtra, 482005, India
+		</p>
+	</div>
+
+	<div class="contact-form mb-3">
+		<h2>Get in Touch</h2>
+		<form onsubmit="showDialog(); return false;">
+			<label for="name">Name:</label> <input type="text" id="name"
+				name="name" required> <label for="email">Email:</label> <input
+				type="email" id="email" name="email" required> <label
+				for="message">Message:</label>
+			<textarea id="message" name="message" rows="5" required></textarea>
+			<button type="submit">Send Message</button>
+		</form>
+	</div>
+
+
+	<!-- Overlay for the dialog box -->
+	<div id="dialog-overlay" class="dialog-overlay">
+		<div id="dialog" class="dialog-box">
+			<span class="close-btn" onclick="closeDialog();">&times;</span>
+			<h2>Thank You!</h2>
+			<p>Your message has been sent. We will get back to you shortly.</p>
+		</div>
+	</div>
+
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>

@@ -1,0 +1,30 @@
+package com.admin.servlet;
+
+import com.DAO.FounderDAOImpl;
+import com.entity.Volunteer;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Connection;
+import java.util.List;
+
+@WebServlet("/volunteer")
+public class VolunteerListServlet extends HttpServlet {
+	private FounderDAOImpl founderDAO;
+
+	@Override
+	public void init() throws ServletException {
+		Connection connection = // Get your database connection
+				founderDAO = new FounderDAOImpl(connection);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<Volunteer> volunteerList = founderDAO.getAllVolunteers();
+		request.setAttribute("volunteerList", volunteerList);
+		request.getRequestDispatcher("volunteer.jsp").forward(request, response);
+	}
+}

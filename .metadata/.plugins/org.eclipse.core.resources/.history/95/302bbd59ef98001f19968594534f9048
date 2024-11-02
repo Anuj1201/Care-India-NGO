@@ -1,0 +1,64 @@
+package com.RazorpayPaymentGateway;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+import com.DAO.DonorDAOImpl;
+import com.DB.DBConnect;
+import com.entity.Donors;
+
+@SuppressWarnings("serial")
+@WebServlet("/saveDonor")
+public class DonorServlet extends HttpServlet {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/html;charset=UTF-8"); // Changed content type to HTML
+		try {
+			String name = request.getParameter("name"); // Dynamic name
+			String email = request.getParameter("email"); // Dynamic email
+			String amountStr = request.getParameter("amount");
+			String orderId = request.getParameter("orderId");
+			String paymentId = request.getParameter("paymentId");
+
+			// Parse amount to double
+			double amount = Double.parseDouble(amountStr);
+
+			// Create Donor entity class object
+			Donors donor = new Donors();
+			donor.setName(name);
+			donor.setEmail(email);
+			donor.setAmount(amount);
+			donor.setOrderId(orderId);
+			donor.setPaymentId(paymentId);
+
+			// Save donor details in the database using DonorDAOImpl
+			DonorDAOImpl donorDAO = new DonorDAOImpl(DBConnect.getConn());
+			boolean isSaved = donorDAO.saveDonor(donor);
+
+			// Redirect to donors.jsp with alert message on success
+			if (isSaved) {
+				request.setAttribute("message", "success"); // Set message to be read in JSP
+				RequestDispatcher dispatcher = request.getRequestDispatcher("donors.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				request.setAttribute("message", "failure"); // Set message for failure
+				RequestDispatcher dispatcher = request.getRequestDispatcher("donors.jsp");
+				dispatcher.forward(request, response);
+			}
+
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			request.setAttribute("message", "error"); // Set message for error
+			RequestDispatcher dispatcher = request.getRequestDispatcher("donors.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+}

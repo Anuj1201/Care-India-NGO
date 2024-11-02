@@ -1,0 +1,11 @@
+package com.DAO;
+
+public class DonationDAOImpl implements DonationDAO {
+
+	@Override
+	public boolean saveDonors(String name, String email, double amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

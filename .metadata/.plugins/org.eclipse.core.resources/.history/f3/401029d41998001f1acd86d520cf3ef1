@@ -1,0 +1,38 @@
+package com.DAO;
+
+import java.sql.Connection; 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.entity.Donors;
+
+public class DonorDAOImpl implements DonorDAO {
+
+	private Connection conn;
+
+	public DonorDAOImpl(Connection conn) {
+		this.conn = conn;
+	}
+
+	@Override
+	public boolean saveDonors(Donors donor) {
+		boolean isSaved = false;
+		String query = "insert into donors (name, email, amount, payment_id, order_id, payment_date) VALUES (?, ?, ?, ?, ?, NOW())";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+			pstmt.setString(1, donor.getName());
+			pstmt.setString(2, donor.getEmail());
+			pstmt.setDouble(3, donor.getAmount());
+			pstmt.setString(4, donor.getPaymentId());
+			pstmt.setString(5, donor.getOrderId());
+
+			int rowsAffected = pstmt.executeUpdate();
+			if (rowsAffected > 0) {
+				isSaved = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return isSaved;
+	}
+}

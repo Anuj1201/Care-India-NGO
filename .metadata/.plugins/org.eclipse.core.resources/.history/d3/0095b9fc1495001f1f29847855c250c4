@@ -1,0 +1,61 @@
+package com.RazorpayPaymentGateway;
+
+import org.json.JSONObject;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+@SuppressWarnings("serial")
+@WebServlet("/PaymentServlet")
+public class PaymentServlet extends HttpServlet {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			RazorpayClient razorpay = new RazorpayClient("rzp_test_EJIbfJyXtr3D6O", "AvEhWadR12VNREeJHONndaqe");
+
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String amount = request.getParameter("amount");
+			
+			HttpSession session = request.getSession();
+
+			double amountInPaise = Double.parseDouble(amount) * 100; // Convert amount to paise
+
+			// Prepare the order parameters
+			JSONObject orderRequest = new JSONObject();
+			orderRequest.put("amount", amountInPaise);
+			orderRequest.put("currency", "INR");
+			orderRequest.put("receipt", "order_rcptid_11");
+			orderRequest.put("payment_capture", 1); // Automatic capture
+
+			// Create order
+			Order order = razorpay.orders.create(orderRequest);
+
+			// Send order ID and details to JSP
+			session.setAttribute("orderId", order.get("id"));
+			session.setAttribute("amount", amount); // Amount in INR
+			session.setAttribute("name", name); // User name
+			session.setAttribute("email", email); // User email
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("payment.jsp");
+			dispatcher.forward(request, response);
+
+		} catch (RazorpayException e) {
+			e.printStackTrace();
+			request.setAttribute("failedMsg", "Payment processing failed. Please try again.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("join_us.jsp");
+			dispatcher.forward(request, response);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			request.setAttribute("failedMsg", "Invalid amount entered. Please enter a valid number.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("join_us.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+}

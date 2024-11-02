@@ -1,0 +1,32 @@
+
+Oct 28, 2024 18:16:01.130 NEW SESSION
+Oct 28, 2024 18:16:01.130 [5792:20444:1028/181601.127:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 28, 2024 18:16:02.65 Created TensorFlow Lite XNNPACK delegate for CPU.
+Oct 28, 2024 18:16:28.656 [5792:20444:1028/181628.656:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 28, 2024 18:16:33.216 Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#58 is a dynamic-sized tensor).
+Oct 28, 2024 18:17:21.457 [5792:20444:1028/181721.457:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 28, 2024 18:18:42.954 [5792:20444:1028/181842.953:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 28, 2024 18:22:03.628 [5792:20444:1028/182203.627:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 28, 2024 18:25:48.315 [5792:20444:1028/182548.314:ERROR:connection_factory_impl.cc(483)] ConnectionHandler failed with net error: -2
+Oct 28, 2024 18:26:23.552 [5792:20444:1028/182623.551:ERROR:connection_factory_impl.cc(434)] Failed to connect to MCS endpoint with error -106
+Oct 28, 2024 18:26:23.570 [5792:20444:1028/182623.569:ERROR:connection_factory_impl.cc(434)] Failed to connect to MCS endpoint with error -106
+Oct 28, 2024 18:26:26.212 [5792:21208:1028/182626.212:ERROR:device_event_log_impl.cc(201)] [18:26:26.211] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: Element not found. (0x490)
+Oct 28, 2024 18:27:24.431 [5792:20444:1028/182724.430:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+
+Nov 01, 2024 22:55:57.607 NEW SESSION
+Nov 01, 2024 22:55:57.607 [1768:8364:1101/225557.604:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 01, 2024 22:55:59.67 Created TensorFlow Lite XNNPACK delegate for CPU.
+Nov 01, 2024 22:56:23.660 [1768:8364:1101/225623.659:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 01, 2024 22:56:28.761 Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#58 is a dynamic-sized tensor).
+Nov 01, 2024 22:57:23.670 [1768:8364:1101/225723.669:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 01, 2024 22:59:08.718 [1768:8364:1101/225908.718:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 01, 2024 23:01:23.771 [1768:1764:1101/230123.771:ERROR:CONSOLE(1)] "Unknown VE context: tab-7    at a (devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js:1:64099)
+Nov 01, 2024 23:01:23.772     at e.Me (devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js:1:81107)
+Nov 01, 2024 23:01:23.772     at devtools://devtools/bundled/devtools-frontend/front_end/ui/components/render_coordinator/render_coordinator.js:1:150", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+Nov 01, 2024 23:01:23.772 [1768:1764:1101/230123.771:ERROR:CONSOLE(1)] "Unknown VE context: tab-8    at a (devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js:1:64099)
+Nov 01, 2024 23:01:23.772     at e.Me (devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js:1:81107)
+Nov 01, 2024 23:01:23.773     at devtools://devtools/bundled/devtools-frontend/front_end/ui/components/render_coordinator/render_coordinator.js:1:150", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/visual_logging/visual_logging.js (1)
+Nov 01, 2024 23:02:26.821 [1768:1764:1101/230226.821:ERROR:interface_endpoint_client.cc(725)] Message 1 rejected by interface blink.mojom.WidgetHost
+Nov 01, 2024 23:02:27.431 [1768:8364:1101/230227.431:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 01, 2024 23:09:39.104 [1768:8364:1101/230939.102:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Nov 02, 2024 24:04:49.241 [1768:1764:1102/000449.241:ERROR:CONSOLE(1)] "console.assert", source: devtools://devtools/bundled/devtools-frontend/front_end/ui/legacy/components/utils/utils.js (1)

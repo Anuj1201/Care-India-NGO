@@ -1,0 +1,62 @@
+package com.RazorpayPaymentGateway;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import com.DAO.DonorDAOImpl;
+import com.DB.DBConnect;
+import com.entity.Donors;
+
+@SuppressWarnings("serial")
+@WebServlet("/saveDonor")
+public class DonorServlet extends HttpServlet {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+
+		try {
+			// Retrieve parameters from AJAX request
+			String paymentId = request.getParameter("paymentId");
+			String orderId = request.getParameter("orderId");
+			String amountStr = request.getParameter("amount");
+			double amount = Double.parseDouble(amountStr); // Parse amount to double
+			String donorName = request.getParameter("name"); // Dynamic name
+			String donorEmail = request.getParameter("email"); // Dynamic email
+
+			// Create Donors entity
+            // Donors donor = new Donors();
+			Donors donor = new Donors(donorName, donorEmail, amount, paymentId, orderId);
+			donor.setName(donorName);
+			donor.setEmail(donorEmail);
+			donor.setAmount(amount);
+			donor.setPaymentId(paymentId);
+			donor.setOrderId(orderId);
+
+			// Save donor details in the database using PaymentDAOImpl
+			DonorDAOImpl donorDAO = new DonorDAOImpl(DBConnect.getConn());
+			boolean isSaved = donorDAO.saveDonor(donor);
+
+			// Send JSON response back to AJAX based on save result
+			if (isSaved) {
+				out.write("{\"status\":\"success\", \"message\":\"Donation saved successfully.\"}");
+			} else {
+				out.write("{\"status\":\"failure\", \"message\":\"Failed to save donation.\"}");
+			}
+
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			out.write("{\"status\":\"error\", \"message\":\"Invalid data or server error.\"}");
+		} finally {
+			out.flush();
+			out.close();
+		}
+	}
+}

@@ -1,0 +1,12 @@
+package com.DAO;
+
+import java.sql.Connection;
+
+public class FounderDAOImpl implements FounderDAO {
+	private Connection conn;
+
+	public FounderDAOImpl(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+}

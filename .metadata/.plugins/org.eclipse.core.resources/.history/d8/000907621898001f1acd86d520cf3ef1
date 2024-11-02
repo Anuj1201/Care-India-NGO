@@ -1,0 +1,9 @@
+package com.DAO;
+
+import com.entity.Donors;
+
+public interface DonarDAO {
+	
+	public boolean saveDonors(Donors donor);
+	
+}

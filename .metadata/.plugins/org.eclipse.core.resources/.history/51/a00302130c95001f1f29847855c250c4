@@ -1,0 +1,56 @@
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
+
+@WebServlet("/PaymentServlet")
+public class PaymentServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			RazorpayClient razorpay = new RazorpayClient("rzp_test_EJIbfJyXtr3D6O", "AvEhWadR12VNREeJHONndaqe");
+
+			// Get the amount from the request parameter instead
+			String totalPrice = request.getParameter("amount");
+
+			if (totalPrice == null || totalPrice.trim().isEmpty()) {
+				throw new IllegalArgumentException("Amount cannot be null or empty");
+			}
+
+			double amountInPaise = Double.parseDouble(totalPrice) * 100;
+
+			// Prepare the order parameters
+			JSONObject orderRequest = new JSONObject();
+			orderRequest.put("amount", amountInPaise);
+			orderRequest.put("currency", "INR");
+			orderRequest.put("receipt", "order_rcptid_11");
+			orderRequest.put("payment_capture", 1); // automatic capture
+
+			request.setAttribute("amount", totalPrice); // Amount in INR
+			RequestDispatcher dispatcher = request.getRequestDispatcher("payment.jsp");
+			dispatcher.forward(request, response);
+
+		} catch (RazorpayException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			request.setAttribute("errorMsg", e.getMessage());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("errorPage.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+}

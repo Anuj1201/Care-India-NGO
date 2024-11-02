@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Donors</title>
+<%@include file="all_components/indexCss.jsp"%>
+</head>
+<body>
+<%@include file="all_components/navbar.jsp"%>
+	<h1>Our Contributors</h1>
+	
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>

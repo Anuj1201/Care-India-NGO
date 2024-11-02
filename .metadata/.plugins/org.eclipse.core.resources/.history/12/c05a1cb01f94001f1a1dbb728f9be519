@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy"
+	content="script-src 'self' 'nonce-abc123' https://cdn.jsdelivr.net https://code.jquery.com https://stackpath.bootstrapcdn.com; object-src 'none';">
+<title>Home Page</title>
+<%@include file="all_components/allCss.jsp"%>
+<style>
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 0; /* Reduce padding for less height */
+	text-align: center;
+	width: 100%;
+}
+
+footer .footer-content {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0 10px; /* Reduce horizontal padding */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around; /* Space sections evenly */
+}
+
+footer .footer-section {
+	flex: 1 1 200px; /* Allow sections to take up only necessary width */
+	margin-bottom: 10px;
+}
+
+footer .footer-section h5 .anchor {
+	font-size: 1em; /* Smaller font size for title */
+	margin-bottom: 8px; /* Reduce margin for more compact look */
+	color: #007bff;
+}
+
+footer .footer-section p, footer .footer-section a {
+	font-size: 0.8em; /* Smaller font for text */
+	color: #ccc;
+	text-decoration: none;
+	margin: 0; /* Remove additional margin */
+}
+
+footer .social-icons a {
+	color: #ccc;
+	margin: 0 5px;
+	font-size: 1em; /* Reduce icon size */
+	transition: color 0.3s;
+}
+
+/* General styling */
+body {
+	background-image: url('images/background.jpg');
+	font-family: Arial, sans-serif;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	background-image: url('images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	filter: blur(50px); /* Adjust the blur level as needed */
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Main heading style */
+h1 {
+	text-align: center;
+	color: #007bff;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+/* Card styling */
+.card {
+	margin: 20px auto;
+	border: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+	margin: 20px auto;
+	border: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Card image styling */
+.card img {
+	object-fit: cover;
+	width: 100%;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+	border-radius: 100px;
+}
+
+/* Slide-in and slide-out animations */
+.slide-in {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.slide-out {
+	transform: translateX(-100%);
+	opacity: 0;
+}
+
+/* Responsive layout adjustments */
+@media ( min-width : 768px) {
+	.card {
+		max-width: 700px;
+	}
+	.card .row {
+		flex-direction: row;
+	}
+	.card img {
+		height: 100%;
+		max-height: 250px;
+	}
+	h1 {
+		font-size: 2.5em;
+	}
+}
+
+@media ( max-width : 767px) {
+	.card {
+		max-width: 100%;
+	}
+	.card .row {
+		display: flex;
+		flex-direction: column;
+	}
+	.card img {
+		height: 200px;
+		border-radius: 5px;
+	}
+	h1 {
+		font-size: 1.8em;
+		margin-bottom: 15px;
+	}
+}
+</style>
+</head>
+<body>
+	<%@include file="all_components/navbar.jsp"%>
+
+	<div class="container">
+		<h1>OUR MISSIONS</h1>
+
+		<div class="card mb-3" id="card1">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="images/children.jpg"
+						class="img-fluid rounded-start image1 slide-in"
+						alt="Children Mission Image" id="image1">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Support for Children's Education</h5>
+						<p class="card-text">We aim to provide access to quality
+							education for underprivileged children. Our mission is to create
+							a brighter future by supporting educational initiatives.</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 5 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mb-3" id="card2">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="images/oldPeople.jpeg"
+						class="img-fluid rounded-start image2 slide-in"
+						alt="Elderly Support Mission Image" id="image2">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Support for Elderly and Disabled</h5>
+						<p class="card-text">Our goal is to help elderly and disabled
+							individuals live a dignified life. We provide resources, care,
+							and companionship to improve their well-being.</p>
+						<p class="card-text">
+							<small class="text-muted">Last updated 2 mins ago</small>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script nonce="abc123">
+        const imagesCard1 = [
+            "images/children.jpg",
+            "images/logo.jpeg"
+        ];
+        const imagesCard2 = [
+            "images/oldPeople.jpeg",
+            "images/orphanage.jpeg"
+        ];
+
+        let currentImageIndex1 = 0;
+        let currentImageIndex2 = 0;
+
+        setInterval(() => {
+            const img1 = document.getElementById("image1");
+            const img2 = document.getElementById("image2");
+
+            // Apply slide-out class
+            img1.classList.remove("slide-in");
+            img1.classList.add("slide-out");
+
+            img2.classList.remove("slide-in");
+            img2.classList.add("slide-out");
+
+            // Wait for the transition, then change images
+            setTimeout(() => {
+                currentImageIndex1 = (currentImageIndex1 + 1) % imagesCard1.length;
+                currentImageIndex2 = (currentImageIndex2 + 1) % imagesCard2.length;
+
+                img1.src = imagesCard1[currentImageIndex1];
+                img2.src = imagesCard2[currentImageIndex2];
+
+                // Trigger slide-in effect
+                img1.classList.remove("slide-out");
+                img1.classList.add("slide-in");
+
+                img2.classList.remove("slide-out");
+                img2.classList.add("slide-in");
+            }, 500); // Matches the CSS transition duration
+        }, 4000); // Change image every 4 seconds
+    </script>
+
+	<footer>
+		<div class="footer-content">
+			<div class="footer-section">
+				<h5><a href="about.jsp" class="anchor">About Us</a></h5>
+				<p>We are committed to supporting the underprivileged in our
+					community through education, resources, and assistance for the
+					elderly and disabled.</p>
+			</div>
+
+			<div class="footer-section">
+				<h5><a href="contact.jsp" class="anchor">Contact Us</a></h5>
+				<p>Email: info@careIndia.org</p>
+				<p>Phone: +91-7453527819</p>
+			</div>
+
+			<div class="footer-section social-icons">
+				<h5 class="anchor">Follow Us</h5>
+				<a href="#" target="_blank" aria-label="Facebook"><i
+					class="fab fa-facebook-f"></i></a> <a href="#" target="_blank"
+					aria-label="Twitter"><i class="fab fa-twitter"></i></a> <a href="#"
+					target="_blank" aria-label="Instagram"><i
+					class="fab fa-instagram"></i></a> <a href="#" target="_blank"
+					aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+			</div>
+		</div>
+		<p>&copy; 2024 Care India Organization. All rights reserved.</p>
+	</footer>
+</body>
+</html>

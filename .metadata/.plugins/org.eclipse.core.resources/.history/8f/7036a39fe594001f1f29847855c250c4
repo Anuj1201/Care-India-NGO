@@ -1,0 +1,81 @@
+package com.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.entity.Volunteer;
+
+public class FounderDAOImpl implements FounderDAO {
+	private Connection conn;
+
+	public FounderDAOImpl(Connection conn) {
+		this.conn = conn;
+	}
+
+	// Method to save volunteer details
+	public boolean saveVolunteer(Volunteer volunteer) {
+		boolean isSaved = false;
+		String sql = "INSERT INTO volunteers (name, email, contact, address) VALUES (?, ?, ?, ?)";
+
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, volunteer.getName());
+			ps.setString(2, volunteer.getEmail());
+			ps.setString(3, volunteer.getContact());
+			ps.setString(4, volunteer.getAddress());
+
+			int rowsInserted = ps.executeUpdate();
+			isSaved = rowsInserted > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return isSaved;
+	}
+
+	// Method to get all volunteers
+	public List<Volunteer> getAllVolunteers() {
+		
+		List<Volunteer> volunteerList = new ArrayList<>();
+		
+		try {
+			String sql = "SELECT * FROM volunteers";
+			
+			PreparedStatement ps = conn.prepareStatement(sql); 
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Volunteer volunteer = new Volunteer();
+				volunteer.setName(rs.getString("name"));
+				volunteer.setEmail(rs.getString("email"));
+				volunteer.setContact(rs.getString("contact"));
+				volunteer.setAddress(rs.getString("address"));
+				volunteerList.add(volunteer);	
+			}
+			
+			return volunteerList;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return volunteerList;
+	}
+
+	// Updated delete method
+	public boolean deleteVolunteer(String name, String email) {
+		boolean status = false;
+		try {
+			String query = "DELETE FROM volunteers WHERE name=? AND email=?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			status = ps.executeUpdate() > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+}

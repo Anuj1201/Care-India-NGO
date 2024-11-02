@@ -1,0 +1,7 @@
+package com.DAO;
+
+public interface DonationDAO {
+	
+	public boolean saveDonors(String name, String email, double amount);
+	
+}

@@ -1,0 +1,10 @@
+package com.entity;
+
+public class Founder {
+	private int id;
+	private String name;
+	private String email;
+	private String password;
+	private String phno;
+	
+}

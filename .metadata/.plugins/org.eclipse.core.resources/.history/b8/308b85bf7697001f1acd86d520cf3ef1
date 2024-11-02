@@ -1,0 +1,15 @@
+package com.entity;
+
+import java.util.Date;
+
+public class Donors {
+	private int id;
+	private String name;
+	private String email;
+	private double amount;
+	private String paymentId;
+	private String orderId;
+	private Date paymentDate;
+	
+	
+}

@@ -1,0 +1,11 @@
+package com.DAO;
+
+import com.entity.Volunteer;
+
+public interface FounderDAO {
+
+	public boolean saveVolunteer(Volunteer volunteer);
+	
+	public boolean deleteVolunteer(String name, String email);
+
+}

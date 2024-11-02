@@ -1,0 +1,33 @@
+package com.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DonationDAOImpl implements DonationDAO {
+
+	private Connection conn;
+
+	public DonationDAOImpl(Connection conn) {
+		this.conn = conn;
+	}
+
+	@Override
+	public boolean saveDonors(String name, String email, double amount) {
+		boolean saved = false;
+		String sql = "insert into donors (name, email, amount) values (?, ?, ?)";
+		
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, volunteer.getName());
+			ps.setString(2, volunteer.getEmail());
+			ps.setString(3, volunteer.getContact());
+			ps.setString(4, volunteer.getAddress());
+
+			int rowsInserted = ps.executeUpdate();
+			isSaved = rowsInserted > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

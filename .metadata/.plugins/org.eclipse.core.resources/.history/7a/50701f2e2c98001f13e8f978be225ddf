@@ -1,0 +1,191 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy"
+	content="script-src 'self' 'nonce-abc123' https://cdn.jsdelivr.net https://code.jquery.com https://stackpath.bootstrapcdn.com; object-src 'none';">
+
+<title>Payment page</title>
+<%@include file="all_components/allCss.jsp"%>
+<%@include file="all_components/indexCss.jsp"%>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
+/* Centering the card container */
+body {
+	background-image: url('images/background.jpg');
+	font-family: Arial, sans-serif;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	background-image: url('images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	filter: blur(50px); /* Adjust the blur level as needed */
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 20px;
+}
+
+/* Card styling with background blur and white overlay */
+.card {
+	width: 100%;
+	max-width: 400px;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	overflow: hidden;
+	text-align: center;
+	color: #333;
+	background-color: rgba(255, 255, 255, 0.9); /* Light white overlay */
+	transition: transform 0.3s ease;
+}
+
+/* Blurred background image for the card */
+.card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('images/razorpay.png');
+	/* Path to the card's background image */
+	background-size: cover;
+	background-position: center;
+	filter: blur(3px); /* Blur effect for background */
+	z-index: 1;
+	opacity: 0.4; /* Adjust for subtle background image */
+}
+
+.card:hover {
+	transform: scale(1.03);
+}
+
+.card-body {
+	position: relative;
+	z-index: 2;
+	padding: 20px;
+}
+
+/* Title styling */
+.card-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	font-family: Cambria, sans-serif;
+}
+
+/* Payment button styling */
+#rzp-button1 {
+	background-color: grey;
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 15px;
+	font-size: 20px;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+}
+
+#rzp-button1:hover {
+	transform: scale(1.03);
+	background-color: #59d9de;
+	color: white;
+}
+</style>
+</head>
+<body>
+
+	<%@include file="all_components/navbar.jsp"%>
+	<div class="card-container">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Create a Difference</h5>
+				<button id="rzp-button1">Donate</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	var options = {
+		    "key": "rzp_test_EJIbfJyXtr3D6O", // Enter the Key ID generated from Razorpay Dashboard
+		    "amount": "<%=(int) (Double.parseDouble(request.getAttribute("amount").toString()))%>",
+		    "currency": "INR",
+		    "name": "Care-India",
+		    "description": "Test Transaction",
+		    "order_id": "<%=request.getAttribute("orderId")%>",
+		    "handler" : function(response) {
+		        var paymentId = response.razorpay_payment_id;
+		        var orderId = "<%=request.getAttribute("orderId")%>";
+		        var amount = "<%=request.getAttribute("amount")%>
+		";
+
+				// Retrieve donor name and email from input fields
+				var donorName = document.getElementById("donorName").value;
+				var donorEmail = document.getElementById("donorEmail").value;
+
+				// Send AJAX request to DonationServlet to save donation details
+				$
+						.ajax({
+							url : 'saveDonor',
+							type : 'POST',
+							data : {
+								paymentId : paymentId,
+								orderId : orderId,
+								amount : amount,
+								name : donorName,
+								email : donorEmail
+							},
+
+							success : function(data) {
+								alert("Thank you for your contribution!");
+								window.location.href = "donors.jsp";
+							},
+
+							error : function(error) {
+								alert("Payment successful, but there was an error in saving your donation details !!")
+							}
+						});
+
+			},
+			"theme" : {
+				"color" : "#F37254"
+			}
+		};
+		var rzp1 = new Razorpay(options);
+		document.getElementById('rzp-button1').onclick = function(e) {
+			rzp1.open();
+			e.preventDefault();
+			// Check if name and email are entered
+			//if ($("#donorName").val() && $("#donorEmail").val()) {
+
+			//} else {
+			//	alert("Please enter both your name and email.");
+			//}
+		}
+	</script>
+
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>

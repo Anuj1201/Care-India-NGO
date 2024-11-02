@@ -1,0 +1,10 @@
+package com.DAO;
+
+import com.entity.Founder;
+import com.entity.Volunteer;
+
+public interface FounderDAO {
+
+	public boolean saveVolunteer(Volunteer volunteer);
+
+}

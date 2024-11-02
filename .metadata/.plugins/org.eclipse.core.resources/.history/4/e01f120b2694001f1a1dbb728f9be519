@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ISO-8859-1">
+<title>Join Us | Care India</title>
+<%@include file="all_components/allCss.jsp"%>
+<style>
+/* Additional CSS specific to the Join Us page */
+.join-us-header {
+	background-image: url('images/join_us.jpg');
+	padding: 100px 20px; /* Increased padding */
+	text-align: center;
+	color: black;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px; /* Fixed height */
+	display: flex; /* Center text */
+	align-items: top; /* Center vertically */
+	justify-content: center; /* Center horizontally */
+}
+
+.join-us-section {
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.join-us-section h2 {
+	font-size: 2em;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.join-us-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+}
+
+.join-us-card {
+	width: 300px;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s;
+}
+
+.join-us-card:hover {
+	transform: scale(1.05);
+}
+
+.join-us-card h3 {
+	font-size: 1.5em;
+	color: #007BFF;
+}
+
+.join-us-card p {
+	color: #555;
+	margin-bottom: 15px;
+}
+
+.join-us-card a {
+	text-decoration: none;
+	color: #fff;
+	background-color: #007BFF;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+</style>
+</head>
+<body>
+	<%@include file="all_components/navbar.jsp"%>
+
+	<!-- Banner Section -->
+	<div class="join-us-header"></div>
+
+	<!-- Join Us Options Section -->
+	<div class="join-us-section">
+		<h2>Ways You Can Help</h2>
+		<div class="join-us-cards">
+			<!-- Volunteering Card -->
+			<div class="join-us-card">
+				<h3>Volunteer with Us</h3>
+				<p>Help us in various projects like education, elderly care, and
+					disability support. Your time can make a difference!</p>
+				<a href="volunteer.jsp">Sign Up</a>
+			</div>
+
+			<!-- Donate Card -->
+			<div class="join-us-card">
+				<h3>Make a Donation</h3>
+				<p>Support our programs by making a donation. Every
+					contribution, big or small, goes a long way in changing lives.</p>
+				<a href="donate.jsp">Donate Now</a>
+			</div>
+
+			<!-- Partner Card -->
+			<div class="join-us-card">
+				<h3>Partner with Us</h3>
+				<p>We collaborate with organizations and businesses that share
+					our vision. Join hands with us to reach a wider impact.</p>
+				<a href="partner.jsp">Learn More</a>
+			</div>
+		</div>
+	</div>
+
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy"
+	content="script-src 'self' 'nonce-abc123' https://cdn.jsdelivr.net https://code.jquery.com https://stackpath.bootstrapcdn.com; object-src 'none';">
+<title>Contact Us | Care India</title>
+<%@include file="all_components/allCss.jsp"%>
+<%@include file="all_components/indexCss.jsp"%>
+<style>
+/* Additional CSS for Contact Us page */
+body {
+	font-family: Arial, sans-serif;
+}
+
+.contact-info {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.contact-info p {
+	font-size: 1.2em;
+	color: #555;
+}
+</style>
+
+</head>
+<body>
+	<%@include file="all_components/navbar.jsp"%>
+
+	<div class="contact-info mt-5">
+		<h2>Contact Information</h2>
+		<p>
+			<strong>Email:</strong> info@careIndia.org
+		</p>
+		<p>
+			<strong>Phone:</strong> +91-7453527819
+		</p>
+		<p>
+			<strong>Address:</strong> Care India Organization, 512, Shivaji
+			Street, Mumbai, Maharashtra, 482005, India
+		</p>
+	</div>
+	<div>
+		<!-- Button to trigger modal -->
+		<button type="button" id="addFamilyMemberButton"
+			class="btn rounded-button" data-toggle="modal"
+			data-target="#addFamilyModal">Add Family Member</button>
+	</div>
+
+	<!-- Modal for adding family member -->
+	<div class="modal fade" id="addFamilyModal" tabindex="-1" role="dialog"
+		aria-labelledby="addFamilyModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center" id="addFamilyModalLabel">Add
+						Family Member</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="AddFamilyMember" method="POST">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="name">Name:</label> <input type="text" name="name"
+									class="form-control" id="name" placeholder="Name" required>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="relation">Relation:</label> <select name="relation"
+									class="form-control" id="relation" required>
+									<option value="">Select Relation</option>
+									<option value="Father">Father</option>
+									<option value="Mother">Mother</option>
+									<option value="Sibling">Sibling</option>
+									<option value="Wife">Wife</option>
+									<option value="Child">Child</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="dob">Date of Birth:</label> <input type="date"
+								name="dob" class="form-control" id="dob" placeholder="DOB">
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary btn-sm">Add
+								Member</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<%@include file="all_components/footer.jsp"%>
+</body>
+</html>
