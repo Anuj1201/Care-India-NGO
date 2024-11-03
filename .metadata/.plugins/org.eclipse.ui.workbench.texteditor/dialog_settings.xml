@@ -8,6 +8,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="session"/>
 			<item value="console"/>
 			<item value="request"/>
 			<item value="donoremail"/>
@@ -15,7 +16,6 @@
 			<item value="name"/>
 			<item value="donar"/>
 			<item value="pay now"/>
-			<item value="session"/>
 			<item value="age"/>
 		</list>
 		<list key="replacehistory">

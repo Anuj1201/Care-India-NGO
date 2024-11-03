@@ -116,7 +116,7 @@ body::before {
 	<script>
         var options = {
             "key": "rzp_test_EJIbfJyXtr3D6O", // Enter the Key ID generated from Razorpay Dashboard
-            "amount": "<%=(int) (Double.parseDouble(session.getAttribute("amount").toString()))%>",
+            "amount": "<%=(int) (Double.parseDouble(request.getAttribute("amount").toString()))%>",
             "currency": "INR",
             "name": "Care-India",
             "description": "Test Transaction",

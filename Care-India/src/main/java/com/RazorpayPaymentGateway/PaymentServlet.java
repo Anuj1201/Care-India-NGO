@@ -27,7 +27,8 @@ public class PaymentServlet extends HttpServlet {
 			String amountStr = request.getParameter("amount");
 			double amountInPaise = Double.parseDouble(amountStr) * 100; // Convert amount to paise
 
-			System.out.println(name + " " + email + " " + amountStr);
+			//System.out.println(name + " " + email + " " + amountStr);
+			
 			// Prepare the order parameters
 			JSONObject orderRequest = new JSONObject();
 			orderRequest.put("amount", amountInPaise);

@@ -1,6 +1,5 @@
 package com.RazorpayPaymentGateway;
-
-import javax.servlet.RequestDispatcher;
+ 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,14 +50,12 @@ public class DonorServlet extends HttpServlet {
 				request.setAttribute("message", "failure");
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("donors.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("donors.jsp");
 
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			request.setAttribute("message", "error");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("donors.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("donors.jsp");
 		}
 	}
 }

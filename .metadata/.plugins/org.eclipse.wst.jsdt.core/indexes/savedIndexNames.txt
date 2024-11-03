@@ -1,10 +1,7 @@
 INDEX VERSION 1.4+D:\Care India NGO Project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2146052564.index
-3828444376.index
-963228105.index
-2773672395.index
-963228105.index
 3233435387.index
-2038294299.index
-364567681.index
 3217296673.index
+2038294299.index
+2773672395.index
+3828444376.index
+2146052564.index
