@@ -44,3 +44,64 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/Anuj1201/Care-India-NGO.git
 
+2. **Import the Project in Eclipse**:
+   - Open Eclipse, go to **File > Import > Maven > Existing Maven Projects**.
+   - Select the project directory and complete the import.
+
+3. **Configure the Database**:
+   - Create a MySQL database and import the provided schema.
+   - Update the database connection details in `DBConnect.java` to match your local configuration.
+
+4. **Configure Razorpay Integration**:
+   - Sign up for a Razorpay account and obtain your API keys.
+   - Add the Razorpay API keys in the appropriate configuration file or class, such as `PaymentDAOImpl`, to enable the donation feature.
+
+5. **Run the Project**:
+   - Start the Apache Tomcat server.
+   - Deploy the project on Tomcat and access it at `http://localhost:8080/Care-India-NGO`.
+
+## Usage
+
+1. **Home Page**: Showcases the NGO’s mission, objectives, and links to join as a volunteer or make a donation.
+2. **Join Us**: Visitors can sign up as volunteers, and their details will be stored in the database.
+3. **Donations**: When clicking "Donate Now," a dialog box opens to enter donation details. After payment, the donor’s information is saved and displayed on `donations.jsp`.
+4. **Admin Controls**:
+   - **Manage Volunteers**: Admins can view a list of volunteers with options to delete entries.
+   - **Manage Missions**: Admins can add or remove missions from the homepage.
+   - **Logout**: Admins can securely log out of the session.
+
+## Project Structure
+
+- **src/main/java/com/admin/servlet**: Contains servlet classes for handling requests.
+- **src/main/java/com/admin/DB**: Contains database connection and data access classes.
+- **resources/webapp**:
+  - **all_components**: Shared resources such as CSS and JSP components.
+  - **images**: Stores images used across the site.
+  - **WEB-INF**: Contains main JSP pages (index, contact, about, etc.).
+
+## Screenshots
+
+_Include screenshots of the home page, donation form, volunteer management page, and other key features._
+
+## Contributing
+
+We welcome contributions to enhance the Care India NGO project. To contribute:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m "Description of feature"`).
+4. Push the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+---
+
+## Contact
+
+For questions or feedback, feel free to reach out via GitHub.
+
+---
+
+Thank you for supporting our mission!
